@@ -1,13 +1,9 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request
 from experta import *
 
 app = Flask(__name__)
 
 class DiagnosticoMedico(KnowledgeEngine):
-    def __init__(self):
-        super().__init__()
-        self.resultados = []  # Lista para almacenar los resultados del diagnóstico
-
     @Rule(Fact(action='diagnostico'), 
           NOT(Fact(sintoma=W())), 
           salience=10)
@@ -28,12 +24,21 @@ class DiagnosticoMedico(KnowledgeEngine):
     def diagnostico_tos(self):
         self.resultados.append("Diagnóstico: Puede tener tos.")
 
+    @Rule(Fact(action='diagnostico'), Fact(sintoma='dolor de cabeza'))
+    def diagnostico_dolor_cabeza(self):
+        self.resultados.append("Diagnóstico: Puede tener dolor de cabeza.")
+
+    @Rule(Fact(action='diagnostico'), Fact(sintoma='fatiga'))
+    def diagnostico_fatiga(self):
+        self.resultados.append("Diagnóstico: Puede tener fatiga.")
+
     # Agrega más reglas según sea necesario
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         engine = DiagnosticoMedico()
+        engine.resultados = []  # Inicializar la lista de resultados
         engine.reset()  # Reiniciar el motor de reglas
         engine.declare(Fact(action='diagnostico'))  # Declarar la acción de diagnóstico
         engine.run()  # Ejecutar el motor de reglas

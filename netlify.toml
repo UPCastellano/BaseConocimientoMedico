@@ -1,9 +1,0 @@
-[build]
-  publish = "."  # Publicar desde la raíz del proyecto
-  command = ""   # No hay comando de construcción necesario
-
-[dev]
-  command = "python -m http.server"  # Comando para iniciar un servidor local
-  port = 8000  # Puerto en el que se ejecuta tu aplicación
-
-
