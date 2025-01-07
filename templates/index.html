@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Diagnóstico Médico</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5 text-center">Sistema de Diagnóstico Médico</h1>
+        <form method="POST" class="mt-4">
+            <div class="form-group">
+                <label for="sintomas">Seleccione los síntomas:</label><br>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="sintomas" value="fiebre" id="sintoma1">
+                    <label class="form-check-label" for="sintoma1">Fiebre</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="sintomas" value="tos" id="sintoma2">
+                    <label class="form-check-label" for="sintoma2">Tos</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="sintomas" value="dolor de cabeza" id="sintoma3">
+                    <label class="form-check-label" for="sintoma3">Dolor de cabeza</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="sintomas" value="fatiga" id="sintoma4">
+                    <label class="form-check-label" for="sintoma4">Fatiga</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Diagnosticar</button>
+        </form>
+    </div>
+</body>
+</html>
